@@ -16,3 +16,7 @@ class FlaskrTestCase(unittest.TestCase):
     def test_msg_with_output(self):
         rv = self.app.get('/?name=test&output=json')
         self.assertEqual(b'{"imie": "test", "msg": "Hello World!"}', rv.data)
+
+    def test_xml(self):
+        rv = self.app.get('/?name=agata&output=xml')
+        self.assertEqual(b'<greetings><imie>agata</imie><msg>Hello World!</msg></greetings>', rv.data)
