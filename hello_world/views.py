@@ -13,6 +13,8 @@ def index():
     imie = request.args.get('name')
     if not output:
         output = PLAIN
+    if not imie:
+        imie = "IMIE NIEZNANE"
     return get_formatted(msg, imie,
                          output.lower())
 
