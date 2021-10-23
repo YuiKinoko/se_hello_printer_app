@@ -1,4 +1,6 @@
 import unittest
+import json
+import xml.etree.cElementTree as ET
 from hello_world import app
 from hello_world.formater import SUPPORTED
 
@@ -15,8 +17,18 @@ class FlaskrTestCase(unittest.TestCase):
 
     def test_msg_with_output(self):
         rv = self.app.get('/?name=test&output=json')
-        self.assertEqual(b'{"imie": "test", "msg": "Hello World!"}', rv.data)
+        self.assertEqual(json.dumps({
+            'imie': 'test',
+            'msg': 'Hello World!'
+        }), rv.data.decode())
 
     def test_xml(self):
-        rv = self.app.get('/?name=agata&output=xml')
-        self.assertEqual(b'<greetings><imie>agata</imie><msg>Hello World!</msg></greetings>', rv.data)
+        rv = self.app.get('/?name=test&output=xml')
+        greetings = ET.Element("greetings")
+
+        ET.SubElement(greetings, "imie").text = 'test'
+        ET.SubElement(greetings, "msg").text = 'Hello World!'
+
+        s = ET.tostring(greetings)
+
+        self.assertEqual(s, rv.data)
