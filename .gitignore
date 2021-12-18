@@ -2,3 +2,6 @@
 .cache
 .venv/
 .idea/
+test_results.xml
+.coverage
+coverage.xml
