@@ -15,3 +15,8 @@ script:
 
 after_success:
   - make docker_push
+
+deploy:
+  provider: heroku
+  app: infinite-lake-27490
+  api_key: ${HEROKU_API_KEY}
