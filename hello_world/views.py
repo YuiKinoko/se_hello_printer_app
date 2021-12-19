@@ -7,18 +7,17 @@ from flask import request
 msg = "Hello World!"
 
 
-@app.route('/')
+@app.route("/")
 def index():
-    output = request.args.get('output')
-    imie = request.args.get('name')
+    output = request.args.get("output")
+    imie = request.args.get("name")
     if not output:
         output = PLAIN
     if not imie:
         imie = "IMIE NIEZNANE"
-    return get_formatted(msg, imie,
-                         output.lower())
+    return get_formatted(msg, imie, output.lower())
 
 
-@app.route('/outputs')
+@app.route("/outputs")
 def supported_output():
     return ", ".join(SUPPORTED)
