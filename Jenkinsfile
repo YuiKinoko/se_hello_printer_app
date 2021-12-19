@@ -16,7 +16,7 @@ pipeline {
 	            tools: [
 	                JUnit(deleteOutputFiles: true,
 	                failIfNotNew: true,
-	                pattern: 'test_results.xml'
+	                pattern: 'test_results.xml',
 	                skipNoTestFiles: false,
 	                stopProcessingIfError: true)
 	            ]
