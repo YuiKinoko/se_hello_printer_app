@@ -5,12 +5,12 @@ pipeline {
         stage('Deps') {
             steps {
 	            sh 'make deps'
-        	}
+            }
         }
         stage('Test') {
             steps {
                 sh 'make test_xunit || true'
-	            xunit thresholds: [
+                xunit thresholds: [
 	                skipped(failureThreshold: '0'),
 	                failed(failureThreshold: '1')
 	            ],
