@@ -6,7 +6,7 @@ deps:
 	pip install -r test_requirements.txt
 
 lint:
-	flake8 hello_world test
+	black --check hello_world test
 
 run:
 	python main.py
@@ -40,3 +40,6 @@ test_xunit:
 	PYTHONPATH=. py.test -s --cov=. --cov-report xml \
 		--cov-report term \
 		--junit-xml=test_results.xml
+
+fmt:
+	black hello_world test
